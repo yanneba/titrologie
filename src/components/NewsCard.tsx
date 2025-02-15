@@ -51,7 +51,7 @@ const Title = styled.h3`
   text-align: center;
 `
 
-const Date = styled.time`
+const DateText = styled.time`
   display: block;
   margin-top: 0.5rem;
   font-size: 0.9rem;
@@ -72,6 +72,12 @@ interface NewsCardProps {
 }
 
 const NewsCard = ({ article }: NewsCardProps) => {
+  const formattedDate = new Date(article.date).toLocaleDateString('fr-FR', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  })
+
   return (
     <Card
       initial={{ opacity: 0, y: 20 }}
@@ -92,6 +98,7 @@ const NewsCard = ({ article }: NewsCardProps) => {
       )}
       <Content>
         <Title>{article.titre}</Title>
+        <DateText>{formattedDate}</DateText>
       </Content>
     </Card>
   )
